@@ -1,6 +1,6 @@
 package main
 
-func Appname() string {
-	return "Zpp application"
+func AppName() string {
+	return "Zoo application"
 }
 
