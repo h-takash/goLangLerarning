@@ -48,5 +48,12 @@ func main()  {
 	fmt.Println(a)
 	a[1]=6.28
 	fmt.Println(a)
+	lenval:=make([]int,8)
+	lenlen := len(lenval)
+	fmt.Println(lenlen)
+
+	lena := [3]int{1,2,3}
+	lenalen:=len(lena)
+	fmt.Println(lenalen)
 }
 
