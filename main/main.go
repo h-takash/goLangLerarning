@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"./zoo/animals"
 	"runtime"
+	"time"
 )
 var S=""
 
@@ -55,5 +56,32 @@ func main()  {
 	lena := [3]int{1,2,3}
 	lenalen:=len(lena)
 	fmt.Println(lenalen)
+
+ch :=make(chan int, 20)
+go recieve("1st goroutine", ch)
+go recieve("2st goroutine", ch)
+go recieve("3st goroutine", ch)
+
+i := 0
+	for i < 100 {
+		ch<- i
+		i++
+	}
+	close(ch)
+
+// ゴルーチンの完了を三秒待つ
+time.Sleep(3 * time.Second)
 }
 
+func recieve (name string, ch <-chan int){
+	for  {
+		i, ok := <-ch
+		if ok ==false{
+			// 受信できなくなったら終了
+			break
+		}
+		fmt.Println(name, i)
+
+	}
+	fmt.Println(name + "is done.")
+}
